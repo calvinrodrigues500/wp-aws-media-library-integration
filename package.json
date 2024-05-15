@@ -1,0 +1,20 @@
+{
+  "name": "wp-aws-media-library-integration",
+  "version": "1.0.0",
+  "description": "WordPress media library integration with AWS S3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "plugin-zip": "wp-scripts plugin-zip"
+  },
+  "author": "Calvin Rodrigues",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^27.8.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}
