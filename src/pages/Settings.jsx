@@ -1,7 +1,7 @@
 import React from 'react'
 import { __ } from '@wordpress/i18n'
 import { awsAuthenticationMethods } from '../utils/awsAuthenticationMethods';
-import { Button, Dropdown } from '../components';
+import { Button, Dropdown, FormInput } from '../components';
 import { useState } from '@wordpress/element';
 
 const Settings = () => {
@@ -14,6 +14,7 @@ const Settings = () => {
                 flex
                 flex-col
                 gap-5
+                bg-white p-5 !rounded-10
             '>
             <div className='flex gap-2'>
                 <div className='
@@ -48,39 +49,16 @@ const Settings = () => {
                         flex-col
                         gap-2
                     '>
-                        <label
-                            for='access_key'
-                            className='
-                                block
-                                mb-2
-                                text-sm
-                                font-medium
-                                text-gray-900
-                                dark:text-gray-400'
-                        >
-                            {__('Access Key ID', 'wp-aws-mli')}
-                            <input
-                                type='password'
-                                name='access_key'
-                                className='
-                                    mt-1
-                                    block
-                                    w-full
-                                    p-2
-                                    border
-                                    border-red-300
-                                    rounded-mdshadow-sm
-                                    focus:border-indigo-300
-                                    focus:ring
-                                    focus:ring-indigo-200
-                                    focus:ring-opacity-50
-                            '/>
-                        </label>
-
-                        <label for="access_key" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                            {__('Secret Access Key', 'wp-aws-mli')}
-                            <input type='password' name='access_key' className='block' />
-                        </label>
+                        <FormInput
+                            label='Access Key ID'
+                            type='password'
+                            name='access_key'
+                        />
+                        <FormInput
+                            label='Secret Access Key'
+                            type='password'
+                            name='secret_access_key'
+                        />
                     </div>
                 }
             </div>

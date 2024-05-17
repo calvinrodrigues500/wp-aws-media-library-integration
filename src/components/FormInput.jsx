@@ -1,9 +1,15 @@
 import { __ } from '@wordpress/i18n';
 
-const InputField = ({ label, type, name, value, onChange, styles }) => {
+const FormInput = ({ label, type, name, value, onChange, styles, ...props }) => {
     return (
-        <label>
-            {__({ label }, 'wp-aws-mli')}
+        <label className='
+            block
+            mb-2
+            text-gray-600
+            text-sm
+            font-medium
+        '>
+            {__(label, 'wp-aws-mli')}
             <input
                 type={type}
                 name={name}
@@ -27,4 +33,4 @@ const InputField = ({ label, type, name, value, onChange, styles }) => {
     )
 }
 
-export default InputField
+export default FormInput
