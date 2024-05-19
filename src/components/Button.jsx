@@ -1,4 +1,4 @@
-const Button = () => {
+const Button = ({ onClick }) => {
 	return (
 		<div
 			className='
@@ -10,7 +10,9 @@ const Button = () => {
 			px-4
 			rounded
 			max-w-16
+			cursor-pointer
 		'
+		onClick={onClick}
 		>
 			Save
 		</div>
