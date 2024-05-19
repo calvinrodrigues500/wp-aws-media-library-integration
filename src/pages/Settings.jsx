@@ -1,74 +1,111 @@
 import React from 'react'
+import { useDispatch, useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n'
-import { awsAuthenticationMethods } from '../utils/awsAuthenticationMethods';
-import { Button, Dropdown, FormInput } from '../components';
+import { Panel, PanelBody, PanelRow, Button, Flex, FlexItem, TextControl, Dropdown, MenuGroup, MenuItem } from '@wordpress/components';
+import {
+    __experimentalText as Text,
+    TextInput,
+    __experimentalVStack as VStack
+} from '@wordpress/components';
 import { useState } from '@wordpress/element';
 
-const Settings = () => {
 
-    const [authMethod, setAuthMethod] = useState(awsAuthenticationMethods[0].id);
+// import { awsAuthenticationMethods } from '../utils/awsAuthenticationMethods';
+// import { Dropdown, FormInput } from '../components';
+// 
+const Settings = () => {
+    // const [authMethod, setAuthMethod] = useState(awsAuthenticationMethods[0].id);
+
+    const settings = useSelect(
+        (select) => {
+            return select('my-shop').getSettings();
+        },
+        []
+    );
 
     const handleSave = () => {
-
-        console.log('saving settings');
-
     };
 
+    const { setSettings } = useDispatch('my-shop');
+
+    console.log('--------- ', settings);
+
+    const dorpVal = ['hi', 'hel', 'dd'];
+
+
     return (
-        <div
-            className='
-                flex
-                flex-col
-                gap-5
-                w-full
-                px-5 !rounded-10
-            '>
-            <div className='flex gap-2'>
-                <div className='
-                    flex
-                    flex-col
-                    justify-center
-                    gap-2
-                '>
-                    <h1>{__('Authentication and Access Settings', 'wp-aws-mli')}</h1>
-                    <label
-                        for='countries'
-                        className='
-                            block
-                            text-sm
-                            font-medium
-                            text-gray-600
-                        '>
-                        {__('Select an authentication method', 'wp-aws-mli')}
-                    </label>
-                    <Dropdown
-                        options={awsAuthenticationMethods}
-                        intialValue='Select Authentication Type'
-                        onChange={setAuthMethod}
-                        value={authMethod}
-                    />
-                    {authMethod === 'access_key' &&
-                        <div className='
-                        flex
-                        flex-col
-                        gap-2
-                    '>
-                            <FormInput
-                                label='Access Key ID'
-                                type='password'
-                                name='access_key'
+        <Panel
+            header={__('WP AWS Media Library Integration')}
+        >
+            <PanelBody
+                title={__('AWS Configuration', 'wp-aws-mli')}
+                initialOpen={true}
+            >
+                <PanelRow>
+                    <Flex
+                        justify='space-between'
+                    >
+                        <FlexItem>
+                            <Text
+                                size='15'
+                                fontWeight='bold'
+                            >
+                                {__('Select an authentication method', 'wp-aws-mli')}
+                            </Text>
+                            <Dropdown
+                                popoverProps={ { placement: 'bottom-start' } }
+                                renderToggle={ ( { isOpen, onToggle, onClose } ) => (
+                                <Button
+                                    variant="primary"
+                                    onClick={ onToggle }
+                                    aria-expanded={ isOpen }
+                                >
+                                    Toggle Dropdown!
+                                </Button>
+                                ) }
+                                renderContent={ () => (
+                                    <MenuGroup
+                                        onClick={onclose}
+                                    >
+                                    <MenuItem>
+                                        Menu Item 1
+                                    </MenuItem>
+                                    <MenuItem>
+                                        Menu Item 2
+                                    </MenuItem>
+                                    </MenuGroup>
+                                ) }
                             />
-                            <FormInput
-                                label='Secret Access Key'
+                        </FlexItem>
+
+                        <VStack>
+                            <TextControl
                                 type='password'
-                                name='secret_access_key'
+                                value={settings.access_key_id}
+                                label={__('Access Key ID', 'wp-aws-mli')}
+                                onChange={ (value) => {
+                                    setSettings({...settings, access_key_id: value})
+                                }}
                             />
-                        </div>
-                    }
-                </div>
-            </div>
-            <Button onClick={handleSave} />
-        </div>
+                            <TextControl
+                                type='password'
+                                value={settings.secret_access_key}
+                                label={__('Secret Access Key', 'wp-aws-mli')}
+                                onChange={ (value) => 
+                                    setSettings({...settings, secret_access_key: value})
+                                }
+                            />
+                        </VStack>
+                    </Flex>
+                </PanelRow>
+                <Button
+                    variant='primary'
+                    onClick={handleSave}
+                >
+                    {__('Save', 'wp-aws-mli')}
+                </Button>
+            </PanelBody>
+        </Panel>
     )
 }
 

@@ -1,3 +1,4 @@
+import './redux/settingsStore';
 import React from 'react';
 import Dashboard from './components/Dashboard';
 import './index.css';

@@ -59,14 +59,14 @@ class WP_AWS_MLI {
 		wp_enqueue_style(
 			'wp-aws-mli-style',
 			WP_AWS_MLI_PLUGIN_DIR_URL . 'build/index.css',
-			array(),
+			array( 'wp-components'),
 			WP_AWS_MLI_PLUGIN_VERSION
 		);
 
 		wp_enqueue_script(
 			'wp-aws-mli-script',
 			WP_AWS_MLI_PLUGIN_DIR_URL . 'build/index.js',
-			array( 'wp-element' ),
+			array( 'wp-element', 'wp-components' ),
 			WP_AWS_MLI_PLUGIN_VERSION,
 			true
 		);
