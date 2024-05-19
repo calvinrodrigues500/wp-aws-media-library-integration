@@ -5,11 +5,15 @@ import Navbar from './Navbar';
 
 const Dashboard = () => {
   return (
-	<div className='bg-white p-5 !rounded-10'>
-    { __( 'Dashboard', 'wp-aws-mli') }
-    <Navbar />
-    <Settings />
-  </div>
+    <div className='
+    flex
+    h-screen
+    bg-white
+    p-2
+    !rounded-10'>
+      <Navbar />
+      <Settings />
+    </div>
   )
 }
 

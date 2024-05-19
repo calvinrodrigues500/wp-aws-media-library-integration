@@ -8,13 +8,20 @@ const Settings = () => {
 
     const [authMethod, setAuthMethod] = useState(awsAuthenticationMethods[0].id);
 
+    const handleSave = () => {
+
+        console.log('saving settings');
+
+    };
+
     return (
         <div
             className='
                 flex
                 flex-col
                 gap-5
-                bg-white p-5 !rounded-10
+                w-full
+                px-5 !rounded-10
             '>
             <div className='flex gap-2'>
                 <div className='
@@ -28,11 +35,9 @@ const Settings = () => {
                         for='countries'
                         className='
                             block
-                            mb-2
                             text-sm
                             font-medium
-                            text-gray-900
-                            dark:text-gray-400
+                            text-gray-600
                         '>
                         {__('Select an authentication method', 'wp-aws-mli')}
                     </label>
@@ -42,27 +47,27 @@ const Settings = () => {
                         onChange={setAuthMethod}
                         value={authMethod}
                     />
-                </div>
-                {authMethod === 'access_key' &&
-                    <div className='
+                    {authMethod === 'access_key' &&
+                        <div className='
                         flex
                         flex-col
                         gap-2
                     '>
-                        <FormInput
-                            label='Access Key ID'
-                            type='password'
-                            name='access_key'
-                        />
-                        <FormInput
-                            label='Secret Access Key'
-                            type='password'
-                            name='secret_access_key'
-                        />
-                    </div>
-                }
+                            <FormInput
+                                label='Access Key ID'
+                                type='password'
+                                name='access_key'
+                            />
+                            <FormInput
+                                label='Secret Access Key'
+                                type='password'
+                                name='secret_access_key'
+                            />
+                        </div>
+                    }
+                </div>
             </div>
-            <Button />
+            <Button onClick={handleSave} />
         </div>
     )
 }
