@@ -7,5 +7,5 @@ defined('ABSPATH') || exit;
 		id='wp-aws-media-integration'></div>
 </div>
 <script>
-	jQuery('body').removeClass('wp-core-ui wp-admin');
+	// jQuery('body').removeClass('wp-core-ui wp-admin');
 </script>
