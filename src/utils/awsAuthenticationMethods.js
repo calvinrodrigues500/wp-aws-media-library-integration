@@ -4,7 +4,7 @@ export const  awsAuthenticationMethods  = [
 	 	value: 'Access Key'
 	},
 	{
-		id: 'iam_policy',
-		value: 'IAM Policy'
+		id: 'iam_role',
+		value: 'IAM Roles Anywhere'
 	}
 ];

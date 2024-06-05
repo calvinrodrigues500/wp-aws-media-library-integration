@@ -1,29 +1,36 @@
 import React from 'react'
+import { useDispatch, useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n'
-import { awsAuthenticationMethods } from '../utils/awsAuthenticationMethods';
-import { Button, Dropdown } from '../components';
+import { Flex } from '@wordpress/components';
 
+import { useState } from '@wordpress/element';
+import { ConfigurationSetting } from '../components/settings';
+// 
 const Settings = () => {
+    // const [authMethod, setAuthMethod] = useState(awsAuthenticationMethods[0].id);
 
-	const saveSettings = () => {
-		
-	}
+    const settings = useSelect(
+        (select) => {
+            return select('my-shop').getSettings();
+        },
+        []
+    );
 
-	return (
-		<div
-			className='flex flex-col gap-2 justify-center'
-		>
-			<h1>
-				{__('Authentication and Access Settings', 'wp-aws-mli')}
-			</h1>
-			<label for="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an authentication method</label>
-			<Dropdown
-				options={awsAuthenticationMethods}
-				intialValue='Select Authentication Type'
-			/>
-			<Button />
-		</div>
-	)
+    const handleSave = () => {
+    };
+
+    const { setSettings } = useDispatch('my-shop');
+
+    return (
+
+        <Flex
+            direction='column'
+            justify='center'
+            align='center'
+        >
+            <ConfigurationSetting />
+        </Flex>
+    )
 }
 
 export default Settings

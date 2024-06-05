@@ -1,9 +1,10 @@
+import './redux/settingsStore';
 import React from 'react';
 import Dashboard from './components/Dashboard';
 import './index.css';
 
 const App = () => {
-	return <Dashboard/>
+    return <Dashboard />
 }
 
 export default App;
